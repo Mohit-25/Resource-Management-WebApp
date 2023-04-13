@@ -37,7 +37,8 @@ public class AddHrController extends HttpServlet {
 		
 		new AdminDao().addHr(user);
 		
-		response.sendRedirect("AdminDash.jsp");
+		response.sendRedirect("ListHrController");
+		
 	}
 
 	

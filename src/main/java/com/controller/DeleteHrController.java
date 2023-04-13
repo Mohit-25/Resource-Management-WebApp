@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,18 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.bean.HrBean;
 import com.dao.AdminDao;
 
-@WebServlet("/ListHrController")
-public class ListHrController extends HttpServlet{
+@WebServlet("/delete")
+public class DeleteHrController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-      
-		ArrayList<HrBean> users=new AdminDao().getHrList();
-		
-		req.setAttribute("users", users);
-		
-		req.getRequestDispatcher("AdminDash.jsp").forward(req, resp);
+
+		Integer id=Integer.parseInt(req.getParameter("id"));
+	    new AdminDao().deleteHr(id);
+	    
+	    resp.sendRedirect("ListHrController");
+	   
+	
 	}
 
 }

@@ -12,6 +12,9 @@ import com.bean.AdminBean;
 import com.bean.HrBean;
 import com.util.DbConnection;
 
+import google.Bean.UserBean;
+import google.util.UserConnection;
+
 
 
 public class AdminDao {
@@ -101,7 +104,7 @@ public class AdminDao {
 		ArrayList<HrBean> list=new ArrayList<>();
 		try {
 		con=DbConnection.getConnection();
-		PreparedStatement pstm=con.prepareStatement("select * from Hr");
+		PreparedStatement pstm=con.prepareStatement("select * from Hr ");
 				
 		rs=pstm.executeQuery();
 		
@@ -110,12 +113,12 @@ public class AdminDao {
 			user=new HrBean();
 			user.setHrId(rs.getInt("hrId"));
 			user.setHrFirstName(rs.getString("hrFirstName"));
-			user.setHrFirstName(rs.getString("hrLastName"));
-			user.setHrFirstName(rs.getString("hrEmail"));
-			user.setHrFirstName(rs.getString("hrPassword"));
-			user.setHrFirstName(rs.getString("hrGender"));
-			user.setHrFirstName(rs.getString("hrContact"));
-			user.setHrFirstName(rs.getString("hrJoinDate"));
+			user.setHrLastName(rs.getString("hrLastName"));
+			user.setHrEmail(rs.getString("hrEmail"));
+//			user.setHrPassword(rs.getString("hrPassword"));
+//			user.setHrGender(rs.getString("hrGender"));
+			user.setHrContact(rs.getLong("hrContact"));
+//			user.setHrJoinDate(rs.getString("hrJoinDate"));
 			
 			list.add(user);
 			
@@ -124,7 +127,90 @@ public class AdminDao {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}
 		return list;
+	}
+
+	public HrBean getHrById(Integer id) {
+		
+		HrBean user=null;
+		ResultSet rs =null;
+	
+		Connection con=null;
+	   try
+	  {
+		
+		
+		// TODO Auto-generated method stub
+		con = DbConnection.getConnection();
+		PreparedStatement pstm = con.prepareStatement("select * from hr where hrId=?");
+		
+		pstm.setInt(1,id);
+		rs=pstm.executeQuery();
+		
+		if(rs.next())
+		{
+			user=new HrBean();
+			user.setHrId(rs.getInt("hrId"));
+			user.setHrFirstName(rs.getString("hrFirstName"));
+			user.setHrLastName(rs.getString("hrLastName"));
+			user.setHrEmail(rs.getString("hrEmail"));
+			user.setHrPassword(rs.getString("hrPassword"));
+			user.setHrGender(rs.getString("hrGender"));
+			user.setHrContact(rs.getLong("hrContact"));
+			user.setHrJoinDate(rs.getString("hrJoinDate"));
+			
+		
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}finally {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
+		return user;
+	}
+
+	public void deleteHr(int id) {
+		
+		Connection con=null;
+		   try
+		  {
+			
+			
+			// TODO Auto-generated method stub
+			con = DbConnection.getConnection();
+			PreparedStatement pstm = con.prepareStatement("delete from hr where hrId=?");
+			
+			pstm.setInt(1,id);
+			pstm.executeUpdate();
+			
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }

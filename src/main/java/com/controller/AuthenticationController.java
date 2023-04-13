@@ -30,21 +30,21 @@ public class AuthenticationController extends HttpServlet {
 		abean.setAdminPassword(password);
 		
 	    AdminBean user=new AdminDao().Authenticate(emailId,password);
-	    RequestDispatcher rd=null;
+	  
 	    if(user!=null)
 	    {
 	    
-	    	request.setAttribute("user", user);
-	    	rd=request.getRequestDispatcher("AdminDash.jsp");
+	    	
+	    	response.sendRedirect("ListHrController");
 	    }
 	    else
 	    {
 	    	request.setAttribute("auser", abean);
 	    	request.setAttribute("error", "Plesae Enter Valid Credentials.....");
-	    	rd=request.getRequestDispatcher("AdminLogin.jsp");
+	    	request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);;
 	    }
 	    
-	    rd.forward(request, response);
+	    
 	    
 
 	    
