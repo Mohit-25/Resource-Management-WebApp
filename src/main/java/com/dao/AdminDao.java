@@ -6,14 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.catalina.mbeans.UserMBean;
+
 
 import com.bean.AdminBean;
 import com.bean.HrBean;
 import com.util.DbConnection;
 
-import google.Bean.UserBean;
 import google.util.UserConnection;
+
+
 
 
 
@@ -75,7 +76,7 @@ public class AdminDao {
 			pstm.setString(3, bean.getHrEmail());
 			pstm.setString(4, bean.getHrPassword());
 			pstm.setString(5, bean.getHrGender());
-			pstm.setLong(6, bean.getHrContact());
+			pstm.setString(6, bean.getHrContact());
 			pstm.setString(7, bean.getHrJoinDate());
 			
 
@@ -117,7 +118,7 @@ public class AdminDao {
 			user.setHrEmail(rs.getString("hrEmail"));
 //			user.setHrPassword(rs.getString("hrPassword"));
 //			user.setHrGender(rs.getString("hrGender"));
-			user.setHrContact(rs.getLong("hrContact"));
+			user.setHrContact(rs.getString("hrContact"));
 //			user.setHrJoinDate(rs.getString("hrJoinDate"));
 			
 			list.add(user);
@@ -163,7 +164,7 @@ public class AdminDao {
 			user.setHrEmail(rs.getString("hrEmail"));
 			user.setHrPassword(rs.getString("hrPassword"));
 			user.setHrGender(rs.getString("hrGender"));
-			user.setHrContact(rs.getLong("hrContact"));
+			user.setHrContact(rs.getString("hrContact"));
 			user.setHrJoinDate(rs.getString("hrJoinDate"));
 			
 		
@@ -211,6 +212,93 @@ public class AdminDao {
 				e.printStackTrace();
 			}
 		}
+		
+	}
+
+	public HrBean getUserById(Integer userId) {
+		
+		HrBean user=null;
+		ResultSet rs =null;
+	
+		Connection con=null;
+	   try
+	  {
+		
+		
+		// TODO Auto-generated method stub
+		con = DbConnection.getConnection();
+		PreparedStatement pstm = con.prepareStatement("select * from Hr where hrId=?");
+		
+		pstm.setInt(1,userId);
+		rs=pstm.executeQuery();
+		
+		if(rs.next())
+		{
+			user=new HrBean();
+			user.setHrId(rs.getInt("hrId"));
+			user.setHrFirstName(rs.getString("hrFirstName"));
+			user.setHrLastName(rs.getString("hrLastName"));
+			user.setHrEmail(rs.getString("hrEmail"));
+			user.setHrPassword(rs.getString("hrPassword"));
+			user.setHrGender(rs.getString("hrGender"));
+			user.setHrContact(rs.getString("hrContact"));
+			user.setHrJoinDate(rs.getString("hrJoinDate"));
+		
+			
+		}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}finally {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
+		return user;
+	}
+
+	public void UpdateUser(HrBean bean) {
+		
+		 Connection con=null;
+		   try
+		  {
+			
+			
+			// TODO Auto-generated method stub
+			con = DbConnection.getConnection();
+			PreparedStatement pstm = con.prepareStatement("update hr set hrFirstName=?,hrLastName=?,hrEmail=?,hrPassword=?,hrGender=?,hrContact=?,hrJoinDate=? where hrId=?");
+			
+			
+			pstm.setString(1,bean.getHrFirstName());
+			pstm.setString(2, bean.getHrLastName());
+			pstm.setString(3, bean.getHrEmail());
+			pstm.setString(4, bean.getHrPassword());
+			pstm.setString(5, bean.getHrGender());
+			pstm.setString(6, bean.getHrContact());
+			pstm.setString(7, bean.getHrJoinDate());
+			pstm.setInt(8,bean.getHrId());
+			
+			
+			pstm.executeUpdate();
+		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			
 		
 	}
 }

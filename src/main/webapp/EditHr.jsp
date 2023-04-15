@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="editHrController" method="post">
 
-<form action="AddHr" method="post">
-
+     <input type="hidden" name="id" value="${param.id}">
      First Name: <input type="text" name="firstName" required value=${user.hrFirstName} ><span>${firstname}</span><br/><br/>
 	 Last Name:  <input type="text" name="lastName"  required value=${user.hrLastName}><span>${lastname}</span><br/><br/>
      Email ID:  <input type="text" name="emailId"  required value=${user.hrEmail}><span>${email}</span><br/><br/>
@@ -22,5 +22,6 @@
 	      
 	  
 </form>
+
 </body>
 </html>

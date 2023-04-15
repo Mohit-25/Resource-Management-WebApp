@@ -23,7 +23,7 @@ public class AddHrController extends HttpServlet {
 		String emailId=(String)request.getParameter("emailId");
 		String password=(String)request.getParameter("password");
 		String gender=(String)request.getParameter("gender");
-		Long number=(Long)Long.parseLong(request.getParameter("number"));
+		String number=(String)request.getParameter("number");
 		String date=(String)request.getParameter("date");
 		
 		HrBean user=new HrBean();

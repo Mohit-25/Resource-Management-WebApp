@@ -21,7 +21,9 @@ hrLastName varchar(30),
 hrEmail varchar(30),
 hrPassword varchar(30),
 hrGender varchar(7),
-hrContact numeric(10),
+hrContact varchar(10),
 hrJoinDate varchar(10)
 )
 drop table Hr
+
+

@@ -7,7 +7,7 @@ public class HrBean {
 	  private String hrEmail;
 	  private String hrPassword	;
 	  private String hrGender	;
-	  private Long hrContact;
+	  private String hrContact;
 	  private String hrJoinDate;
 	public Integer getHrId() {
 		return hrId;
@@ -45,10 +45,10 @@ public class HrBean {
 	public void setHrGender(String hrGender) {
 		this.hrGender = hrGender;
 	}
-	public Long getHrContact() {
+	public String getHrContact() {
 		return hrContact;
 	}
-	public void setHrContact(Long hrContact) {
+	public void setHrContact(String hrContact) {
 		this.hrContact = hrContact;
 	}
 	public String getHrJoinDate() {

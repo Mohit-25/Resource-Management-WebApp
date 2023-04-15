@@ -38,7 +38,8 @@ Welcome Back ${user.adminName}<br/>
        <td><button><a href="view?id=${user.hrId}" style="text-decoration: none">View HR</a></button>
        |
        <button><a href="delete?id=${user.hrId}" style="text-decoration: none">Delete HR</a></button>
-       
+       |
+       <button><a href="editHrController?id=${user.hrId}" style="text-decoration: none">Edit HR</a></button>
        
        
     </tr>  
