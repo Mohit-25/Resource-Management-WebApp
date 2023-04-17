@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<button><a href="AdminLogin.jsp" style="text-decoration: none">Delete HR</a></button>
+<button><a href="AdminLogin.jsp" style="text-decoration: none">Admin Login</a></button>
+<button><a href="HrLogin.jsp" style="text-decoration: none">Hr Login</a></button>
 </body>
 </html>

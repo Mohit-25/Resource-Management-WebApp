@@ -12,7 +12,7 @@ import com.bean.AdminBean;
 import com.bean.HrBean;
 import com.util.DbConnection;
 
-import google.util.UserConnection;
+
 
 
 
@@ -20,7 +20,7 @@ import google.util.UserConnection;
 
 public class AdminDao {
 
-	public AdminBean Authenticate(String emailId, String password) {
+	public AdminBean adminAuthenticate(String emailId, String password) {
 		Connection con = null;
 		ResultSet rs = null;
 		AdminBean user = null;
@@ -300,5 +300,46 @@ public class AdminDao {
 		}
 			
 		
+	}
+
+	public HrBean hrAuthenticate(String emailId, String password) {
+
+		Connection con = null;
+		ResultSet rs = null;
+		HrBean user = null;
+		try {
+			con = DbConnection.getConnection();
+			PreparedStatement pstm = con.prepareStatement("select * from Hr where hrEmail=? and hrPassword=?");
+			pstm.setString(1, emailId);
+			pstm.setString(2, password);
+
+			rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				user=new HrBean();
+				user.setHrId(rs.getInt("hrId"));
+				user.setHrFirstName(rs.getString("hrFirstName"));
+				user.setHrLastName(rs.getString("hrLastName"));
+				user.setHrEmail(rs.getString("hrEmail"));
+				user.setHrPassword(rs.getString("hrPassword"));
+				user.setHrGender(rs.getString("hrGender"));
+				user.setHrContact(rs.getString("hrContact"));
+				user.setHrJoinDate(rs.getString("hrJoinDate"));
+
+		   }
+			
+		}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}finally {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	  return user;
 	}
 }

@@ -16,8 +16,8 @@ import com.dao.AdminDao;
 /**
  * Servlet implementation class AuthenticationController
  */
-@WebServlet("/AuthenticationController")
-public class AuthenticationController extends HttpServlet {
+@WebServlet("/AdminAuthenticationController")
+public class AdminAuthenticationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -29,7 +29,7 @@ public class AuthenticationController extends HttpServlet {
 		abean.setAdminEmail(emailId);
 		abean.setAdminPassword(password);
 		
-	    AdminBean user=new AdminDao().Authenticate(emailId,password);
+	    AdminBean user=new AdminDao().adminAuthenticate(emailId,password);
 	  
 	    if(user!=null)
 	    {

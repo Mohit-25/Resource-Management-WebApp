@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="AdminAuthenticationController" method="post">
+<form action="HrAuthenticationController" method="post">
 
-   Enter Email<input type="email" name="adminEmail" value=${auser.adminEmail}><br/><br/>
-   Enter Password<input type="password" name="adminPass" value=${auser.adminPassword}><br/><br/>
+   Enter Email<input type="email" name="hrEmail" value=${huser.hrEmail}><br/><br/>
+   Enter Password<input type="password" name="hrPass" value=${huser.hrPassword}><br/><br/>
    <input type="submit" value="Login">
 </form>
   ${error}
