@@ -51,14 +51,6 @@ public class ListResourceController extends HttpServlet{
 			
 		}
 		
-		for(String[]s:dblist)
-		{
-			for(String s1:s)
-			{
-				System.out.println(s1);
-			}
-		}
-		
 
 		
 	

@@ -12,6 +12,9 @@ import com.bean.HrBean;
 import com.bean.ResourceBean;
 import com.util.DbConnection;
 
+import google.Bean.UserBean;
+import google.util.UserConnection;
+
 public class HrDao {
 
 	public void addResource(ResourceBean bean) {
@@ -512,6 +515,96 @@ public class HrDao {
 		}
 		return s;
 
+	}
+
+
+	public void deleteResource(Integer id) {
+
+		Connection con=null;
+		   try
+		  {
+			
+			
+			// TODO Auto-generated method stub
+			con = DbConnection.getConnection();
+			PreparedStatement pstm = con.prepareStatement("delete from User_Language where userId=?;delete from User_Technology where userId=?;delete from User_Database where userId=?;delete from Resource where userId=?");
+					
+		
+			pstm.setInt(1,id);
+			pstm.setInt(2,id);
+			pstm.setInt(3,id);
+			pstm.setInt(4,id);
+			pstm.executeUpdate();
+			
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+
+	public ResourceBean searchresource(String name) {
+		
+
+		  ResultSet rs=null;
+		  ArrayList<UserBean> list=new ArrayList<>();
+		  UserBean user=null;
+		  Connection con=null;
+
+		  try
+		  {
+			
+			
+			// TODO Auto-generated method stub
+			con = DbConnection.getConnection();
+			PreparedStatement pstm = con.prepareStatement("select * from users where firstName like ?");
+			
+			pstm.setString(1,firstName+"%");
+			
+			
+			
+			rs=pstm.executeQuery();
+			
+			while(rs.next())
+			{
+				user=new UserBean();
+				user.setId(rs.getInt("id"));
+				user.setFirstName(rs.getString("firstName"));
+				user.setLastName(rs.getString("lastName"));
+				user.setEmailId(rs.getString("emailId"));
+				user.setPassword(rs.getString("password"));
+				user.setCity(rs.getString("city"));
+				user.setGender(rs.getString("gender"));
+				user.setH1(rs.getString("h1"));
+				user.setH2(rs.getString("h2"));
+				user.setH3(rs.getString("h3"));
+				
+				list.add(user);
+			}
+		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		   return list;
+	
 	}
 
 

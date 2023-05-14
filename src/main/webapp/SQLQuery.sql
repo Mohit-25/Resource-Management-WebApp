@@ -106,6 +106,7 @@ userId	int references Resource(userId),
 techId	int references Technology(techId)	
 )
 select * from User_Technology
+delete from User_Technology where userId=1 ; delete from User_Database where userId=1
 			
 create table User_Database
 (			

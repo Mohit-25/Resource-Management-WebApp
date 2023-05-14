@@ -18,7 +18,8 @@
      int k=0;
    
      %>
-<button><a href="showdata" style="text-decoration: none">Add Resources</a></button>
+<button><a href="SearchResource.jsp" style="text-decoration: none">Search Resource</a></button> 
+<button><a href="AddResource.jsp" style="text-decoration: none">Add Resources</a></button>
 <table border="1">
     <tr>
       <th>Id</th>
@@ -67,11 +68,11 @@
 
        
        
-<%--        <td><button><a href="view?id=${user.hrId}" style="text-decoration: none">View HR</a></button> --%>
-<!--        | -->
-<%--        <button><a href="delete?id=${user.hrId}" style="text-decoration: none">Delete HR</a></button> --%>
-<!--        | -->
-<%--        <button><a href="editHrController?id=${user.hrId}" style="text-decoration: none">Edit HR</a></button> --%>
+         <td><button><a href="view?id=${user.userId}" style="text-decoration: none">View HR</a></button> 
+         |
+         <button><a href="deleteresource?id=${user.userId}" style="text-decoration: none">Delete HR</a></button> 
+         |
+         <button><a href="editHrController?id=${user.userId}" style="text-decoration: none">Edit HR</a></button>
        
        
     </tr>  
